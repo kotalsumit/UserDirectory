@@ -1,16 +1,14 @@
 package com.sumit.userdirectory.feature.users.data.repository
 
-import com.sumit.userdirectory.core.common.coroutine.DispatcherProvider
 import com.sumit.userdirectory.core.common.error.AppError
 import com.sumit.userdirectory.core.common.result.AppResult
+import com.sumit.userdirectory.core.testing.TestDispatcherProvider
 import com.sumit.userdirectory.feature.users.data.remote.UsersRemoteDataSource
 import com.sumit.userdirectory.feature.users.data.remote.dto.AddressDto
 import com.sumit.userdirectory.feature.users.data.remote.dto.CompanyDto
 import com.sumit.userdirectory.feature.users.data.remote.dto.UserDto
 import com.sumit.userdirectory.feature.users.domain.model.User
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -104,14 +102,6 @@ private class FakeUsersRemoteDataSource(
         error?.let { throw it }
         return users
     }
-}
-
-private class TestDispatcherProvider(
-    private val testDispatcher: TestDispatcher,
-) : DispatcherProvider {
-    override val default: CoroutineDispatcher = testDispatcher
-    override val io: CoroutineDispatcher = testDispatcher
-    override val main: CoroutineDispatcher = testDispatcher
 }
 
 private fun userDto(id: Int): UserDto {

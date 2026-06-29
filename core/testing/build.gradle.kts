@@ -27,4 +27,7 @@ kotlin {
 
 dependencies {
     implementation(project(":core:common"))
+
+    implementation(libs.junit)
+    implementation(libs.kotlinx.coroutines.test)
 }

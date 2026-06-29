@@ -3,32 +3,26 @@ package com.sumit.userdirectory.feature.users.presentation.list
 import app.cash.turbine.test
 import com.sumit.userdirectory.core.common.error.AppError
 import com.sumit.userdirectory.core.common.result.AppResult
+import com.sumit.userdirectory.core.testing.MainDispatcherRule
 import com.sumit.userdirectory.feature.users.domain.model.Address
 import com.sumit.userdirectory.feature.users.domain.model.Company
 import com.sumit.userdirectory.feature.users.domain.model.User
 import com.sumit.userdirectory.feature.users.domain.repository.UsersRepository
 import com.sumit.userdirectory.feature.users.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
 import org.junit.Rule
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertIs
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class UserListViewModelTest {
     @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
+    val mainDispatcherRule = MainDispatcherRule(StandardTestDispatcher())
 
     @Test
     fun `initial load shows loading then success`() = runTest {
@@ -141,19 +135,6 @@ private class FakeUsersRepository(
 
     override suspend fun getUserById(userId: Int): AppResult<User> {
         return AppResult.Error(AppError.NotFound("User not found"))
-    }
-}
-
-@OptIn(ExperimentalCoroutinesApi::class)
-class MainDispatcherRule(
-    private val dispatcher: TestDispatcher = StandardTestDispatcher(),
-) : TestWatcher() {
-    override fun starting(description: Description) {
-        Dispatchers.setMain(dispatcher)
-    }
-
-    override fun finished(description: Description) {
-        Dispatchers.resetMain()
     }
 }
 
