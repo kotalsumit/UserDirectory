@@ -16,3 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "UserDirectory"
 include(":app")
+include(":core:common")
+include(":core:network")
+include(":core:testing")
+include(":feature:users")
