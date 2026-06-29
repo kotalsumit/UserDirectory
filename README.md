@@ -172,13 +172,16 @@ Run only the user feature Compose UI tests:
 
 ## Screenshots
 
-User list:
-
-![User list](docs/screenshots/user-list.png)
-
-User detail:
-
-![User detail](docs/screenshots/user-detail.png)
+<table>
+  <tr>
+    <th>User list</th>
+    <th>User detail</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/user-list.png" alt="User list" width="260" /></td>
+    <td><img src="docs/screenshots/user-detail.png" alt="User detail" width="260" /></td>
+  </tr>
+</table>
 
 ## Demo Video
 
