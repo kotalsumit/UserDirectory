@@ -30,10 +30,14 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:network"))
 
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
     implementation(libs.ktor.client.core)
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
 }
