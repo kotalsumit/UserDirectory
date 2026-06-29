@@ -24,3 +24,8 @@ kotlin {
         jvmTarget.set(JvmTarget.fromTarget(libs.versions.jvmTarget.get()))
     }
 }
+
+dependencies {
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.koin.core)
+}
